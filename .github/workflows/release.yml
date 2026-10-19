@@ -36,7 +36,14 @@ jobs:
 
       - name: Publish to npm
         if: env.NODE_AUTH_TOKEN != ''
-        run: npm publish --access public --provenance
+        run: |
+          NAME="$(node -p "require('./package.json').name")"
+          VER="$(node -p "require('./package.json').version")"
+          if npm view "$NAME@$VER" version >/dev/null 2>&1; then
+            echo "$NAME@$VER already published, skipping npm publish"
+          else
+            npm publish --access public --provenance
+          fi
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
