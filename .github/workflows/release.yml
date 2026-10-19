@@ -43,8 +43,11 @@ jobs:
             npm publish --access public --provenance
           fi
 
+      # Release 正文 = CHANGELOG 当前版本条目（缺失则上一步失败）
+      - name: Extract release notes from CHANGELOG
+        run: node scripts/release-notes.mjs /tmp/release-notes.md
+
       - name: GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          generate_release_notes: true
-          body_path: CHANGELOG.md
+          body_path: /tmp/release-notes.md

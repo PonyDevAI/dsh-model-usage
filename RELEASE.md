@@ -18,6 +18,29 @@ GitHub Actions: .github/workflows/release.yml   (触发: push tags: v*)
 
 CI（`.github/workflows/ci.yml`）在 push `main` / PR 时只跑检查（语法 + 冒烟 + `npm pack` 内容校验），**不会发布**。
 
+## 一·五、CHANGELOG 与 Release 正文（强制）
+
+- **每个版本必须在 `CHANGELOG.md` 有对应 `## <版本>` 条目**，缺失时 release workflow 直接失败（`scripts/release-notes.mjs`）
+- GitHub Release 正文 = **自动从 CHANGELOG 抽取当前版本条目**（不是全文、不是手写）
+- CHANGELOG 采用 [Keep a Changelog](https://keepachangelog.com/) 风格：
+
+```markdown
+## 1.0.2 — 2026-10-19
+
+### 新增
+- ...
+
+### 修复
+- ...
+
+### 变更 / 移除
+- ...
+```
+
+- 分类固定用：`新增` / `变更` / `修复` / `移除` / `安全`（无内容的分类省略）
+- 语言：与仓库一致用中文；写"用户可感知的变化"，不写实现细节流水账
+- 版本标题格式：`## <semver> — <YYYY-MM-DD>`（工具按 `## <version>` 前缀匹配）
+
 ## 二、认证方式（永不过期）
 
 使用 **npm Trusted Publishing（OIDC）**：

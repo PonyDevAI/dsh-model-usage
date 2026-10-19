@@ -68,7 +68,7 @@ CI 会重复执行以上检查；失败不合并。
 - 语义化版本：`patch` 修 bug / `minor` 新功能 / `major` 破坏性变更
 - **发布只由 tag 触发**，禁止手动 `npm publish`
 - 流程见 `RELEASE.md`；tag 必须与 `package.json` 版本一致
-- 每个版本更新 `CHANGELOG.md`（按 Keep a Changelog 风格）
+- **每个版本必须更新 `CHANGELOG.md`**，条目格式 `## <semver> — <YYYY-MM-DD>`；Release workflow 会抽取当前版本条目作为 GitHub Release 正文，缺失则发布失败
 - 发布使用 npm Trusted Publishing（OIDC），**不增加 NPM_TOKEN**
 
 ## 8. 提交规范

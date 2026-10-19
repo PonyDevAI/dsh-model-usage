@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.2 — 2026-10-19
+
+### 新增
+- 项目规范文档：`AGENTS.md`（项目级规范）、`CONTRIBUTING.md`（开发指南）、`RELEASE.md`（自动发布规范）
+- Release 正文自动从 CHANGELOG 抽取当前版本条目（`scripts/release-notes.mjs`），缺失版本条目时发布失败
+
+### 变更
+- 文档三件套随 npm 包发布（`files` 白名单）
+
 ## 1.0.1 — 2026-10-19
 
 - 发布链路切换到 npm Trusted Publishing（OIDC），CI 不再依赖 NPM_TOKEN
