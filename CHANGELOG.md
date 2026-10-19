@@ -1,12 +1,9 @@
 # Changelog
 
-## Unreleased
-
-- 修复前端模块注册名与安装包名不一致导致 DSH Web 启动失败。
-
 ## 1.0.3 — 2026-10-19
 
 ### 修复
+- 前端模块注册名与安装包名不一致导致 DSH Web 启动失败（`__ModuleLoader__` id 改为 `@ponydev/dsh-model-usage`）
 - 账本实时记录的输入/输出/缓存字段修复后重算历史（此前实时记录 token 明细为 0，聚合少算）
 
 ### 变更
