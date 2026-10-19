@@ -16,6 +16,8 @@
 
 ![统计面板](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/03-settings.png)
 
+![请求日志](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/04-request-log.png)
+
 ## 安装
 
 要求 DSH `>= 0.2.0-rc.2 < 0.3.0`。
