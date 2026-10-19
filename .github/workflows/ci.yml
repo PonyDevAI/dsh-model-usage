@@ -20,5 +20,7 @@ jobs:
           for f in lib/*.js; do node --check "$f"; done
       - name: Smoke test
         run: node scripts/smoke.mjs
+      - name: i18n key parity
+        run: node scripts/check-i18n.mjs
       - name: Package contents
         run: npm pack --dry-run

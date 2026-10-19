@@ -31,6 +31,7 @@ jobs:
         run: |
           for f in lib/*.js; do node --check "$f"; done
           node scripts/smoke.mjs
+          node scripts/check-i18n.mjs
 
       # Trusted Publishing（OIDC）：无需 NPM_TOKEN，凭 GitHub Actions 身份直接发布
       - name: Publish to npm (OIDC trusted publisher)

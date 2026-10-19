@@ -60,6 +60,8 @@ CI 会重复执行以上检查；失败不合并。
 - 颜色/圆角/字号只用 `--dsw-*` token，禁止硬编码色值（fallback 除外）
 - 设置页只放**短标签 + 控件**，不写说明性长文（口径说明放 README/docs）
 - 文案全走 i18n（zh/en 两个字典），不出现硬编码中文/英文
+- **语言必须通过框架 `t`（`props.t`）翻译**，禁止用 `navigator.language` 自行判断（DSH 语言可在设置里切换）
+- zh/en 字典键必须完全一致，CI 用 `scripts/check-i18n.mjs` 强制校验
 - 间距节奏：组件内 12px；卡片内边距 13px 15px；弹窗内容 `mbody` 12px
 - 修改 client 后：`open test-render.html` 离线验证 + 0 控制台错误
 
