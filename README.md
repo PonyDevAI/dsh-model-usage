@@ -104,16 +104,20 @@ config:
 - 账本只存用量聚合（token 数、窗口百分比），不含对话内容
 - 错误信息脱敏（`sk-*` / `Bearer *` 会被打码）
 
-## 开发
+## 开发与发布
+
+- 开发环境、联调方式、提交前检查：[CONTRIBUTING.md](CONTRIBUTING.md)
+- 项目级规范（AI/自动化代理必读）：[AGENTS.md](AGENTS.md)
+- **发布流程（tag 触发自动发布，OIDC 无 token）**：[RELEASE.md](RELEASE.md)
+- 架构设计：[docs/architecture.md](docs/architecture.md)
 
 ```bash
 # 本地渲染台（离线验证 UI，不依赖宿主）
 open test-render.html
 
-# 宿主侧改动后需要重启 dsh web；client 侧改动刷新页面即可
+# 发版（自动发布到 npm + GitHub Release）
+npm version patch && git push --follow-tags
 ```
-
-架构说明见 [docs/architecture.md](docs/architecture.md)。
 
 ## License
 

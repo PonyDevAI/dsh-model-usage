@@ -32,7 +32,10 @@
     "docs",
     "README.md",
     "CHANGELOG.md",
-    "LICENSE"
+    "LICENSE",
+    "AGENTS.md",
+    "CONTRIBUTING.md",
+    "RELEASE.md"
   ],
   "exports": {
     ".": "./lib/index.js",
