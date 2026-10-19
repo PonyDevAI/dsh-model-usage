@@ -11,8 +11,6 @@ permissions:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -34,8 +32,8 @@ jobs:
           for f in lib/*.js; do node --check "$f"; done
           node scripts/smoke.mjs
 
-      - name: Publish to npm
-        if: env.NODE_AUTH_TOKEN != ''
+      # Trusted Publishing（OIDC）：无需 NPM_TOKEN，凭 GitHub Actions 身份直接发布
+      - name: Publish to npm (OIDC trusted publisher)
         run: |
           NAME="$(node -p "require('./package.json').name")"
           VER="$(node -p "require('./package.json').version")"
@@ -44,12 +42,6 @@ jobs:
           else
             npm publish --access public --provenance
           fi
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Skip publish notice
-        if: env.NODE_AUTH_TOKEN == ''
-        run: echo "NPM_TOKEN 未配置，跳过 npm 发布（仅创建 GitHub Release）"
 
       - name: GitHub Release
         uses: softprops/action-gh-release@v2
