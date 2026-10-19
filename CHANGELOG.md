@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.1 — 2026-10-19
+
+- 发布链路切换到 npm Trusted Publishing（OIDC），CI 不再依赖 NPM_TOKEN
+- 修复：`usageOf` 兼容实时链路的 `input/cacheRead/...` 字段（tokens 统计）
+- 新增：CI（语法 + 16 项冒烟测试）与 Release 自动发布工作流
+
 ## 1.0.0 — 2026-10-19
 
 首个公开发布（npm: `@ponydevai/dsh-model-usage`）。
