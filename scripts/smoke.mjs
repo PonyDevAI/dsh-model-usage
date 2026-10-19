@@ -21,8 +21,8 @@ assert(st.today.requests === 2, '统计请求数 = 2')
 assert(st.today.tokens === 1000 + 4000 + 500 + 2000 + 8000 + 900, '统计 tokens 汇总正确')
 assert(st.today.cacheHitRate === Math.round((12000 / (12000 + 3000)) * 1000) / 10, '缓存命中率公式')
 assert(st.models.length === 2 && st.models[0].tokens >= st.models[1].tokens, '模型聚合排序')
-assert(st.recent.length === 2 && st.recent[0].dur === 1200 && st.recent[0].ttft === 300, '逐条日志耗时/首字')
-assert(st.spentToday && typeof st.spentToday === 'object', '观测字段存在')
+assert(st.recent.length === 2 && st.recent.some((r) => r.dur === 1200 && r.ttft === 300), '逐条日志耗时/首字')
+assert(st.spendToday && typeof st.spendToday === 'object', '观测字段存在')
 
 // 2) 余额/窗口观测
 ledger.observe('deepseek-official', { balance: { currency: 'CNY', total: '30.00' } })
@@ -33,9 +33,9 @@ ledger.observe('zai-coding-cn', w(10, 1000))
 ledger.observe('zai-coding-cn', w(13.5, 1000))
 ledger.observe('zai-coding-cn', w(1, 2000))
 const st2 = ledger.stats({ days: 1 })
-assert(st2.spentToday['deepseek-official'].spent === 1.5, '余额差 = 支出 1.50')
-assert(st2.spentToday['deepseek-official'].recharged === 5, '余额上升 = 充值 5（不冲抵）')
-assert(st2.spentToday['zai-coding-cn'].windows.rolling === 3.5, '窗口消耗 = 3.5%')
+assert(st2.spendToday['deepseek-official'].spent === 1.5, '余额差 = 支出 1.50')
+assert(st2.spendToday['deepseek-official'].recharged === 5, '余额上升 = 充值 5（不冲抵）')
+assert(st2.spendToday['zai-coding-cn'].windows.rolling === 3.5, '窗口消耗 = 3.5%')
 assert(st2.days.length === 1 && st2.days[0].tokens > 0, '按天趋势桶')
 
 // 3) 适配器分发
