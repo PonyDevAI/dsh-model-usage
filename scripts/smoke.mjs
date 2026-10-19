@@ -1,5 +1,6 @@
 // 冒烟测试：账本聚合 / 观测 / 适配器分发（不触网、不写真实 DSH_HOME）
-import { mkdtempSync, rmSync } from 'node:fs'
+import { mkdtempSync, rmSync, readFileSync } from 'node:fs'
+import { runInNewContext } from 'node:vm'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
@@ -10,6 +11,14 @@ const { createLedger } = await import('../lib/ledger.js')
 const { adapterFor } = await import('../lib/adapters.js')
 
 const assert = (cond, msg) => { if (!cond) { console.error('FAIL:', msg); process.exitCode = 1 } else console.log('ok:', msg) }
+
+// 浏览器按包名解析模块；能执行脚本还不足以证明注册成功。
+const pkg = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8'))
+const modules = new Map()
+runInNewContext(readFileSync(new URL('../lib/client.js', import.meta.url), 'utf8'), {
+  window: { __ModuleLoader__: { load(def) { modules.set(def.id, def) } } },
+})
+assert(typeof modules.get(pkg.name)?.factory === 'function', '前端模块按安装包名注册，可由 DSH 加载')
 
 // 1) 账本聚合
 const ledger = createLedger()
