@@ -1,7 +1,7 @@
 # dsh-model-usage
 
-[![npm](https://img.shields.io/npm/v/@ponydevai/dsh-model-usage)](https://www.npmjs.com/package/@ponydevai/dsh-model-usage)
-[![license](https://img.shields.io/npm/l/@ponydevai/dsh-model-usage)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@ponydev/dsh-model-usage)](https://www.npmjs.com/package/@ponydev/dsh-model-usage)
+[![license](https://img.shields.io/npm/l/@ponydev/dsh-model-usage)](LICENSE)
 
 **DeepSeek Harness（DSH）Web UI 插件：实时显示模型供应商的额度与用量。**
 
@@ -22,7 +22,7 @@
 
 ```bash
 # CLI
-dsh plugin --profile web add @ponydevai/dsh-model-usage
+dsh plugin --profile web add @ponydev/dsh-model-usage
 
 # 或在 Web「插件」页搜索安装
 ```
