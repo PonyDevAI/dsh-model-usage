@@ -1,0 +1,123 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+body{font-family:-apple-system,'PingFang SC',sans-serif;background:#f3f4f6;margin:0;padding:20px;display:flex;gap:20px;align-items:flex-start}
+#col1{width:620px}#col2{width:300px}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/react@18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/react-dom@18.3.1/umd/react-dom.production.min.js"></script>
+</head><body>
+<script>window.onerror=function(m,s,l,c,e){document.title='ERR: '+m+' @'+l};setTimeout(()=>{document.title=document.getElementById('col1').childElementCount+' children'},3000)</script>
+<div id="col1"></div><div id="col2"></div>
+<script>
+window.__ModuleLoader__ = { load: (def) => { window.__DEF__ = def } }
+</script>
+<script src="./lib/client.js"></script>
+<script>
+const zhDict = window.__DEF__ // trigger nothing; build stubs
+const FIXTURE = { generatedAt: Date.now() - 30000, refreshSeconds: 60, providers: [
+  { route:'zai-coding-cn', displayName:'GLM Coding Plan', adapter:'glm-coding', status:'ok', fetchedAt:Date.now()-30000, plan:'Pro',
+    windows:[{key:'rolling',label:'5h',usedPct:18,resetAt:Date.now()+8300000},{key:'weekly',label:'周',usedPct:38,resetAt:Date.now()+280000000}],
+    credential:{refs:['ZAI_CODING_CN_API_KEY'],configured:true} },
+  { route:'deepseek-official', displayName:'DeepSeek', adapter:'deepseek-balance', status:'ok', fetchedAt:Date.now()-12000,
+    balance:{currency:'CNY',total:'12.40',granted:'2.40',toppedUp:'10.00',available:true}, credential:{refs:['DEEPSEEK_API_KEY'],configured:true} },
+  { route:'deepseek-account', displayName:'DeepSeek 账号', adapter:'deepseek-account', status:'ok', fetchedAt:Date.now()-45000,
+    balance:{currency:'CNY',total:'30.00',granted:'10.00',toppedUp:'20.00',available:true}, credential:{refs:[],configured:true} },
+  { route:'openai', displayName:'OpenAI', adapter:'none', status:'idle' },
+]}
+window.fetch = async (url) => {
+  const endpoint = String(url)
+  const val = endpoint.includes('config') ? { refreshSeconds:60, entries:{footer:true,composerChip:true,dock:false,headerChip:false} }
+    : endpoint.includes('session-provider') ? { route:'zai-coding-cn' }
+    : FIXTURE
+  return { ok:true, json: async () => ({ ok:true, value: val }) }
+}
+const zh = { win5h:'5h 窗口', winWeek:'本周窗口', winRolling:'滚动窗口', winWeekly:'每周重置', resetIn:'{t} 后重置', warnHigh:'已用偏高', critHigh:'即将用尽',
+  totalBalance:'总余额', grantedBalance:'赠金', toppedUpBalance:'充值余额', available:'可用', unavailable:'余额不足', idle:'该供应商暂无额度接口',
+  groupCurrent:'当前会话在用', groupSub:'订阅窗口', groupApi:'API 余额', groupWallet:'账号钱包', groupOther:'其他',
+  nav:'模型用量', modalSub:'额度来自服务商接口 · 用量来自本机会话日志', refreshAll:'刷新全部', footName:'模型额度', stale:'已过期 · {ago}',
+  settingsHint:'配置项在 cordis.patch.yml', waitingHost:'等待宿主…' }
+const t = (k, vars) => { let s = zh[k] != null ? zh[k] : k; if (vars) for (const kk of Object.keys(vars)) s = s.split('{'+kk+'}').join(String(vars[kk])); return s }
+const captured = {}
+const ctxStub = {
+  effect: (fn) => { try { const d = fn(); return typeof d === 'function' ? d : undefined } catch (e) { console.error(e); return undefined } },
+  on: () => () => {},
+  locale: { register: () => () => {}, bind: () => t },
+  slots: {
+    inject: (slot, registrar) => {
+      try { const r = registrar(); captured[slot] = r && r.comp } catch (e) { console.error('register fail', slot, e) }
+      return () => {}
+    },
+    register: (options, comp) => ({ options, comp }),
+  },
+}
+const PRIM = {
+  Button: (props) => React.createElement('button', { onClick: props.onClick, disabled: props.disabled, style: props.style, title: props.title, 'aria-label': props['aria-label'] }, props.children),
+  Modal: (props) => {
+    if (!props.open) return null
+    return React.createElement('div', { style: { border: '1px solid #d8dce2', borderRadius: 16, background: '#fff', overflow: 'hidden' } },
+      React.createElement('div', { style: { display: 'flex', alignItems: 'center', padding: '14px 18px', borderBottom: '1px solid #eceff3' } },
+        React.createElement('div', null,
+          React.createElement('div', { style: { fontWeight: 700, fontSize: 15 } }, props.title),
+          React.createElement('div', { style: { fontSize: 11, color: '#98a2b3' } }, props.description || '')),
+        React.createElement('div', { style: { marginLeft: 'auto' } },
+          React.createElement('button', { onClick: props.onClose }, props.closeLabel))),
+      React.createElement('div', { className: props.contentClassName }, props.children),
+      React.createElement('div', { style: { display: 'flex', justifyContent: 'flex-end', gap: 8, padding: '12px 18px' } }, props.footer))
+  },
+  Pill: (props) => React.createElement('span', { style: props.style }, props.children),
+  StateDot: (props) => React.createElement('span', { style: { display: 'inline-block', width: 8, height: 8, borderRadius: 8, background: { done: '#12b76a', warning: '#f79009', error: '#f04438', idle: '#c2c9d4', ongoing: '#4176E6' }[props.state || 'idle'] } }),
+  Tooltip: (props) => props.children,
+  Menu: (props) => React.createElement('div', { style: { display: 'inline-flex', flexDirection: 'column', gap: 4 } },
+    props.anchor,
+    props.open ? React.createElement('div', { style: { border: '1px solid #e3e7ed', borderRadius: 10, padding: 6, background: '#fff', fontSize: 12 } },
+      (props.items || []).map((it) => React.createElement('div', { key: it.id, onClick: () => props.onSelect && props.onSelect(it.id), style: { padding: '4px 8px', cursor: 'pointer' } }, it.label))) : null),
+  SegmentedTabs: (props) => React.createElement('div', { role: 'tablist', style: { display: 'flex', gap: 6, marginBottom: 14 } },
+    props.items.map((it) => React.createElement('button', {
+      key: it.id, role: 'tab', 'aria-selected': it.value === props.value,
+      onClick: () => props.onChange(it.value),
+      style: { padding: '5px 14px', borderRadius: 999, fontSize: 12, cursor: 'pointer', border: it.value === props.value ? '1px solid #4176E6' : '1px solid #e3e7ed', background: it.value === props.value ? '#4176E6' : 'transparent', color: it.value === props.value ? '#fff' : '#637182' },
+    }, it.label))),
+  useAnchoredPosition: () => null,
+  useDismissOnOutsidePointer: () => {},
+}
+window.__DEF__.factory((name) => {
+  if (name === 'react') return React
+  if (name === 'react-dom') return ReactDOM
+  if (name === '@deepseek-ai/dsh-client-ui-primitives') return PRIM
+  throw new Error('no mock for ' + name)
+}).apply(ctxStub)
+const RECENT = Array.from({ length: 8 }, (_, i) => ({ t: Date.now() - i * 60000, p: i % 2 ? 'deepseek-official' : 'zai-coding-cn', m: i % 2 ? 'deepseek-flash' : 'glm-5.3-flash', i: 180 + i * 37, o: 700 + i * 40, cr: 650000 + i * 800, cw: 0, dur: 5600 + i * 120, ttft: 1500 + i * 60 }))
+const STATS = { generatedAt: Date.now(), rangeDays: 7, backfilled: true,
+  today: { requests: 128, tokens: 2_140_000, cacheHitRate: 97.5 },
+  range: { requests: 842, tokens: 12_800_000, cacheHitRate: 96.8 },
+  last7: { requests: 842, tokens: 12_800_000, cacheHitRate: 96.8 },
+  hours: Array.from({ length: 24 }, (_, h) => ({ h, tokens: Math.round(Math.abs(Math.sin(h / 3)) * 900000), requests: Math.round(Math.abs(Math.cos(h / 4)) * 40), byProvider: { 'zai-coding-cn': { tokens: Math.round(Math.abs(Math.sin(h / 3)) * 600000), requests: 25 }, 'deepseek-official': { tokens: Math.round(Math.abs(Math.sin(h / 3)) * 300000), requests: 15 } } })),
+  days: Array.from({ length: 7 }, (_, i) => { const d = new Date(Date.now() - (6 - i) * 86400000); const p = i === 6 ? 60 : 20 + i * 6; return { date: d.toISOString().slice(0, 10), tokens: Math.round(p * 22000), requests: Math.round(p * 1.2), byProvider: { 'zai-coding-cn': { tokens: Math.round(p * 15000), requests: Math.round(p * 0.7) }, 'deepseek-official': { tokens: Math.round(p * 7000), requests: Math.round(p * 0.5) } } } }),
+  providers: [ { route: 'zai-coding-cn', requests: 512, tokens: 8_900_000, cacheHitRate: 97.1 }, { route: 'deepseek-official', requests: 330, tokens: 3_900_000, cacheHitRate: 95.8 } ],
+  todayByProvider: [ { route: 'zai-coding-cn', requests: 90, tokens: 1_400_000, cacheHitRate: 97.3 }, { route: 'deepseek-official', requests: 38, tokens: 740_000, cacheHitRate: 96.1 } ],
+  models: [ { provider: 'zai-coding-cn', model: 'glm-5.3', requests: 300, tokens: 6_100_000 }, { provider: 'zai-coding-cn', model: 'glm-5.3-flash', requests: 212, tokens: 2_800_000 }, { provider: 'deepseek-official', model: 'deepseek-flash', requests: 330, tokens: 3_900_000 } ],
+  spendToday: {
+    'deepseek-official': { kind: 'balance', currency: 'CNY', spent: 1.24, recharged: 0 },
+    'zai-coding-cn': { kind: 'windows', windows: { rolling: 3.2, weekly: 1.8 } },
+  },
+  recent: RECENT,
+}
+const apiFor = (route) => ({
+  snapshot: async () => FIXTURE,
+  sessionProvider: async () => ({ route }),
+  stats: async () => STATS,
+  config: async () => ({ refreshSeconds: 60, entries: { footer: true, composerChip: true, dock: false, headerChip: false } }),
+})
+ReactDOM.createRoot(document.getElementById('col1')).render(React.createElement(captured['settings.section'], { api: apiFor('zai-coding-cn'), t }))
+ReactDOM.createRoot(document.getElementById('col2')).render(React.createElement(
+  'div', null,
+  React.createElement('div', { style: { fontSize: 10.5, color: '#98a2b3', fontWeight: 700, letterSpacing: 1, margin: '2px 0 6px' } }, '当前 = GLM（套餐）'),
+  React.createElement(captured['sidebar.footer.action'], { api: apiFor('zai-coding-cn'), t, wide: true }),
+  React.createElement('div', { style: { fontSize: 10.5, color: '#98a2b3', fontWeight: 700, letterSpacing: 1, margin: '14px 0 6px' } }, '当前 = DeepSeek（API 计费）'),
+  React.createElement(captured['sidebar.footer.action'], { api: apiFor('deepseek-official'), t, wide: true }),
+  React.createElement('div', { style: { fontSize: 10.5, color: '#98a2b3', fontWeight: 700, letterSpacing: 1, margin: '14px 0 6px' } }, '无会话（回退总览）'),
+  React.createElement(captured['sidebar.footer.action'], { api: apiFor(null), t, wide: true }),
+  React.createElement('div', { style: { fontSize: 10.5, color: '#98a2b3', fontWeight: 700, letterSpacing: 1, margin: '14px 0 6px' } }, '设置 → 模型页底部'),
+  React.createElement(captured['settings.models.footer'], { api: apiFor('zai-coding-cn'), t }),
+))
+</script>
+</body></html>

@@ -1,0 +1,67 @@
+{
+  "name": "@ponydevai/dsh-model-usage",
+  "version": "1.0.0",
+  "description": "DSH Web 插件：实时显示模型供应商额度与用量（DeepSeek / GLM Coding Plan / OpenRouter / Kimi Coding Plan + 自定义适配器）",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "deepseek",
+    "glm",
+    "openrouter",
+    "kimi",
+    "quota",
+    "usage",
+    "dashboard"
+  ],
+  "license": "MIT",
+  "author": "Pony <205503242+jmaubay7@users.noreply.github.com>",
+  "homepage": "https://github.com/PonyDevAI/dsh-model-usage#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PonyDevAI/dsh-model-usage.git"
+  },
+  "bugs": {
+    "url": "https://github.com/PonyDevAI/dsh-model-usage/issues"
+  },
+  "type": "module",
+  "files": [
+    "lib",
+    "assets",
+    "cordis.patch.yml",
+    "docs",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js"
+  },
+  "engines": {
+    "dsh": ">=0.2.0-rc.2 <0.3.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-primitives",
+        "@deepseek-ai/dsh-api-session-controller",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-ui-settings",
+        "@deepseek-ai/dsh-client-locale"
+      ],
+      "external": [
+        "@deepseek-ai/dsh-client-ui-primitives"
+      ]
+    }
+  }
+}

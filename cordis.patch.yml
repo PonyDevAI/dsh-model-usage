@@ -1,0 +1,6 @@
+- insert:
+    - id: model-usage
+      name: dsh-model-usage
+      config:
+        refreshSeconds: 60
+        footer: true
