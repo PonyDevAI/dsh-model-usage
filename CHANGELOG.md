@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.1.0 — 2026-10-20
+
+### 新增
+- **Logo 覆盖对齐 DSH 全部 provider**：新增 AWS/Bedrock、Azure、Baseten、Cloudflare、Fireworks、GitHub(Copilot)、Groq、HuggingFace、Meta、Mistral、NVIDIA、Qwen、Together、Vercel、Xiaomi 官方图标（共 26 个资产）
+- 路由映射补全：`openai-codex`、`google`/`google-vertex`、`github-copilot`、`xiaomi*`、`qwen*` 等
+- **自定义供应商 Logo**：`$DSH_HOME/model-usage/logos/<slug>.svg` + `customQuota.<route>.logo` 指定
+- 透明底品牌标改白底圆形（深色主题下可见），不透明方形标保持圆角方形
+
+### 说明
+- 统计/用量（KPI/趋势/请求日志/聚合表）对所有 provider 通用：来自会话事件，任何路由（含自定义）都会统计
+- 额度接口不可用的 provider（Anthropic/OpenAI/Google/Bedrock/Azure/Groq 等）保持隐藏，可用 customQuota 或提 issue
+
 ## 1.0.9 — 2026-10-20
 
 ### 修复

@@ -37,6 +37,30 @@ DSH（`@deepseek-ai/dsh` 0.2.0-rc.2）的 pi-ai provider 目录共 43 个 provid
 
 > 这些 provider 的卡片**直接隐藏**，不影响插件运行；需要展示时用 `customQuota` 配置接入，或提 issue 附接口文档。
 
+## Logo 覆盖
+
+已知官方 Logo（26 个资产，`assets/logos/`）：
+
+`aws`(Bedrock) · `azure` · `baseten` · `cloudflare` · `deepseek` · `fireworks` · `github`(Copilot) · `googlegemini`(Google/Vertex) · `groq` · `huggingface` · `kimi`(Moonshot) · `meta` · `minimax` · `mistral` · `nvidia` · `openai`(含 Codex) · `opencode` · `openrouter` · `qwen` · `together` · `vercel` · `xai` · `xiaomi` · `zai`(GLM)
+
+无官方资源的（`ant-ling`、`radius`、`cerebras`）回退字母圆标。
+
+### 自定义供应商 Logo
+
+两种方式：
+
+1. **官方风格 slug**：把 SVG 放到 `$DSH_HOME/model-usage/logos/<slug>.svg`，然后在 `customQuota` 里指定 `logo: <slug>`
+2. 不指定时按路由名自动匹配（`zai`/`kimi`/`openai` 等），未匹配则用字母圆标
+
+```yaml
+config:
+  customQuota:
+    my-provider:
+      url: https://api.example.com/quota
+      logo: my-provider        # 对应 $DSH_HOME/model-usage/logos/my-provider.svg
+      balance: { path: data.balance, currency: CNY }
+```
+
 ## 用 customQuota 接入任意供应商
 
 ```yaml

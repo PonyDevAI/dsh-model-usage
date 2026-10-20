@@ -6,6 +6,7 @@
 **DeepSeek Harness（DSH）Web UI 插件：实时显示模型供应商的额度与用量。**
 
 - 侧边栏底部：当前供应商的额度/余额卡片，点击打开全部供应商弹窗（Codex 式）
+- 官方 Logo：DeepSeek / GLM(Z.ai) / Kimi / OpenRouter / MiniMax / OpenCode / OpenAI / Anthropic / Gemini / xAI / Qwen / Mistral / Groq / GitHub Copilot 等 25+
 - 设置 → 模型用量：KPI、趋势图、供应商/模型聚合、请求日志、CSV 导出
 - 设置 → 模型：页面底部显示各供应商额度
 - 只用**真实数据**：额度来自服务商接口，用量来自本机会话日志（逐 token 一致），不做金额估算
