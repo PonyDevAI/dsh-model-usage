@@ -15,7 +15,7 @@ window.__ModuleLoader__ = { load: (def) => { window.__DEF__ = def } }
 const zhDict = window.__DEF__ // trigger nothing; build stubs
 const FIXTURE = { generatedAt: Date.now() - 30000, refreshSeconds: 60, providers: [
   { route:'zai-coding-cn', displayName:'GLM Coding Plan', adapter:'glm-coding', status:'ok', fetchedAt:Date.now()-30000, plan:'Pro',
-    windows:[{key:'rolling',label:'5h',usedPct:18,resetAt:Date.now()+8300000},{key:'weekly',label:'周',usedPct:38,resetAt:Date.now()+280000000}],
+    windows:[{key:'rolling',label:'5h',usedPct:18,resetAt:Date.now()+8300000},{key:'weekly',label:'周',usedPct:38,resetAt:Date.now()+280000000},{key:'mcp',label:'MCP',usedPct:25,resetAt:Date.now()+2500000000,countBased:true,limit:4000,remaining:3000}],
     credential:{refs:['ZAI_CODING_CN_API_KEY'],configured:true} },
   { route:'deepseek-official', displayName:'DeepSeek', adapter:'deepseek-balance', status:'ok', fetchedAt:Date.now()-12000,
     balance:{currency:'CNY',total:'12.40',granted:'2.40',toppedUp:'10.00',available:true}, credential:{refs:['DEEPSEEK_API_KEY'],configured:true} },
@@ -30,7 +30,7 @@ window.fetch = async (url) => {
     : FIXTURE
   return { ok:true, json: async () => ({ ok:true, value: val }) }
 }
-const zh = { win5h:'5h 窗口', winWeek:'本周窗口', winRolling:'滚动窗口', winWeekly:'每周重置', resetIn:'{t} 后重置', warnHigh:'已用偏高', critHigh:'即将用尽',
+const zh = { win5h:'5h 窗口', winWeek:'本周窗口', winRolling:'滚动窗口', winWeekly:'每周重置', limitMcp:'每月 MCP 工具', remainCalls:'剩余 {n}/{m} 次', resetIn:'{t} 后重置', warnHigh:'已用偏高', critHigh:'即将用尽',
   totalBalance:'总余额', grantedBalance:'赠金', toppedUpBalance:'充值余额', available:'可用', unavailable:'余额不足', idle:'该供应商暂无额度接口',
   groupCurrent:'当前会话在用', groupSub:'订阅窗口', groupApi:'API 余额', groupWallet:'账号钱包', groupOther:'其他',
   nav:'模型用量', modalSub:'额度来自服务商接口 · 用量来自本机会话日志', refreshAll:'刷新全部', footName:'模型额度', stale:'已过期 · {ago}',
@@ -97,7 +97,7 @@ const STATS = { generatedAt: Date.now(), rangeDays: 7, backfilled: true,
   models: [ { provider: 'zai-coding-cn', model: 'glm-5.3', requests: 300, tokens: 6_100_000 }, { provider: 'zai-coding-cn', model: 'glm-5.3-flash', requests: 212, tokens: 2_800_000 }, { provider: 'deepseek-official', model: 'deepseek-flash', requests: 330, tokens: 3_900_000 } ],
   spendToday: {
     'deepseek-official': { kind: 'balance', currency: 'CNY', spent: 1.24, recharged: 0 },
-    'zai-coding-cn': { kind: 'windows', windows: { rolling: 3.2, weekly: 1.8 } },
+    'zai-coding-cn': { kind: 'windows', windows: { rolling: 3.2, weekly: 1.8, mcp: 25 } },
   },
   recent: RECENT,
 }

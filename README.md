@@ -43,7 +43,7 @@ dsh plugin --profile web add link:/path/to/dsh-model-usage
 |---|---|---|
 | DeepSeek API | `api.deepseek.com/user/balance` | `DEEPSEEK_API_KEY` |
 | DeepSeek 账号 | Host `deepseekAccount` 服务（登录态） | — |
-| GLM Coding Plan（国内 / 国际） | `open.bigmodel.cn` / `api.z.ai` 额度接口 | `ZAI_CODING_CN_API_KEY` / `ZAI_API_KEY` |
+| GLM Coding Plan（国内 / 国际） | `open.bigmodel.cn` / `api.z.ai` 额度接口（5 小时 / 每周 / **每月 MCP 工具次数**） | `ZAI_CODING_CN_API_KEY` / `ZAI_API_KEY` |
 | OpenRouter | `openrouter.ai/api/v1/credits`（兜底 `/api/v1/key`） | `OPENROUTER_API_KEY` |
 | Kimi Coding Plan | `api.kimi.com/coding/v1/usages` | `KIMI_CODING_API_KEY` / `KIMI_API_KEY` / `MOONSHOT_API_KEY` |
 | 其他任意供应商 | `customQuota` 配置（URL + JSON 路径映射） | 自定义 `keyRef` |
