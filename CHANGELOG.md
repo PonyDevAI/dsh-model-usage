@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.7 — 2026-10-20
+
+### 修复
+- **凭据引用改为「路由派生优先」**：如 `opencode-go` → `OPENCODE_GO_API_KEY`（与 DSH Models 页的 `apiKeyEnv` 一致），修复已配置 Key 的供应商仍显示未配置/不显示的问题
+
 ## 1.0.6 — 2026-10-20
 
 ### 新增
