@@ -5,6 +5,7 @@
 ### 新增
 - **GLM 每月 MCP 工具调用限额**：解析 `TIME_LIMIT`（unit=5，月）窗口，展示「每月 MCP 工具 · 剩余 N/M 次」与重置倒计时（额度接口 `usageDetails`: search-prime / web-reader / zread）
 - 窗口行支持「次数型」额度（无百分比时按剩余次数展示，进度条仍按剩余比例）
+- **官方 Logo**：GLM / Z.ai（官方 SVG）、Kimi / Moonshot、OpenRouter、MiniMax、xAI；路由映射扩展（zai/glm/bigmodel/zhipu/chatglm、kimi/moonshot、openrouter、minimax、xai），无官方资源时回退字母圆标
 
 ### 变更
 - 侧边栏迷你卡片最多展示 3 个窗口（5 小时 / 每周 / 每月 MCP）
