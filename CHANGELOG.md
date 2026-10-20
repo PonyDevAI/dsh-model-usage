@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.2.0 — 2026-10-20
+
+### 新增
+- **检查更新**：设置 → 模型用量 标题右侧显示当前版本 `vX.Y.Z`，点击「检查更新」查询 npm registry 最新版本；有新版本时显示橙点与更新提示
+- 弹窗展示 运行版本 / 最新版本 / 一键复制手工更新命令（`dsh plugin --profile web add <pkg>@<ver> --registry=...`）
+- RPC `update-check`（10 分钟缓存；registry 固定 npmjs，不返回凭据）
+
+### 说明
+- 自动更新需 DSH profile 包管理器介入，本插件只提供「检查 + 命令复制」，执行后重启 DSH Web 生效
+
 ## 1.1.0 — 2026-10-20
 
 ### 新增

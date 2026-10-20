@@ -9,6 +9,7 @@
 - 官方 Logo：DeepSeek / GLM(Z.ai) / Kimi / OpenRouter / MiniMax / OpenCode / OpenAI / Anthropic / Gemini / xAI / Qwen / Mistral / Groq / GitHub Copilot 等 25+
 - 设置 → 模型用量：KPI、趋势图、供应商/模型聚合、请求日志、CSV 导出
 - 设置 → 模型：页面底部显示各供应商额度
+- 版本检查：设置 → 模型用量 右上角「检查更新」（对比 npm 最新版，可复制更新命令）
 - 只用**真实数据**：额度来自服务商接口，用量来自本机会话日志（逐 token 一致），不做金额估算
 
 ![侧边栏额度卡片](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/01-sidebar.png)
