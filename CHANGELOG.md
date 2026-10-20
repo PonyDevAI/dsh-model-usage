@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.8 — 2026-10-20
+
+### 新增
+- OpenCode / OpenCode Go 官方 Logo（`opencode.ai/favicon.svg`）
+
+### 修复
+- 方形品牌标（Z.ai、Kimi、OpenRouter、MiniMax、OpenCode、xAI）改用**圆角方形**渲染，避免圆形裁切掉四角
+
 ## 1.0.7 — 2026-10-20
 
 ### 修复
