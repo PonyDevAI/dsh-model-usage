@@ -37,7 +37,7 @@ dsh plugin --profile web add @ponydev/dsh-model-usage
 dsh plugin --profile web add link:/path/to/dsh-model-usage
 ```
 
-## 供应商支持
+## 供应商支持（完整矩阵见 [docs/providers.md](docs/providers.md)）
 
 | 供应商 | 数据接口 | 凭据引用 |
 |---|---|---|
@@ -46,6 +46,11 @@ dsh plugin --profile web add link:/path/to/dsh-model-usage
 | GLM Coding Plan（国内 / 国际） | `open.bigmodel.cn` / `api.z.ai` 额度接口（5 小时 / 每周 / **每月 MCP 工具次数**） | `ZAI_CODING_CN_API_KEY` / `ZAI_API_KEY` |
 | OpenRouter | `openrouter.ai/api/v1/credits`（兜底 `/api/v1/key`） | `OPENROUTER_API_KEY` |
 | Kimi Coding Plan | `api.kimi.com/coding/v1/usages` | `KIMI_CODING_API_KEY` / `KIMI_API_KEY` / `MOONSHOT_API_KEY` |
+| Moonshot / Kimi 平台 | `api.moonshot.{ai,cn}/v1/users/me/balance` | `MOONSHOT_API_KEY` / `MOONSHOT_CN_API_KEY` |
+| MiniMax Token Plan | `api.minimax.io` / `api.minimaxi.com` `/v1/token_plan/remains` | `MINIMAX_API_KEY` / `MINIMAX_CN_API_KEY` |
+| OpenCode Go | `opencode.ai/zen/go/v1/usage` | `OPENCODE_API_KEY` |
+| Xiaomi MiMo | `platform.xiaomimimo.com/api/v1/balance` | `XIAOMI_API_KEY` |
+| GitHub Copilot | `api.github.com/copilot_internal/user` | `GITHUB_TOKEN` |
 | 其他任意供应商 | `customQuota` 配置（URL + JSON 路径映射） | 自定义 `keyRef` |
 
 `customQuota` 示例（余额式）：

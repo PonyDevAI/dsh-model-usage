@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.0.6 — 2026-10-20
+
+### 新增
+- **供应商覆盖对齐 DSH provider 目录（43 个）**：
+  - 新增适配器：OpenCode Go（`zen/go/v1/usage`，5h/周/月）、Moonshot/Kimi 平台余额、MiniMax Token Plan（5h/周）、Xiaomi MiMo 余额、GitHub Copilot 配额（Premium/Chat/补全）
+  - `deepseek` 路由也映射到 DeepSeek 余额适配器
+  - 新增「每月限额」窗口标签
+- `docs/providers.md`：完整覆盖矩阵（真实额度 / 订阅待确认 / 无公开接口 / customQuota 接入方式）
+
+### 变更
+- 无公开额度接口的 provider（Anthropic/OpenAI/Google/Bedrock/Azure/Groq 等）保持隐藏，不产生错误卡片
+
 ## 1.0.5 — 2026-10-20
 
 ### 新增
