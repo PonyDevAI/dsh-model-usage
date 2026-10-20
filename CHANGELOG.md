@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.0.9 — 2026-10-20
+
+### 修复
+- 供应商卡头部在 `displayName` 与路由 id 相同时不再重复显示（如 `opencode-go opencode-go`）
+
 ## 1.0.8 — 2026-10-20
 
 ### 新增
