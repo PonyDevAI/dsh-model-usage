@@ -53,6 +53,7 @@ dsh plugin --profile web add link:/path/to/dsh-model-usage
 | OpenCode Go | `opencode.ai/zen/go/v1/usage` | `OPENCODE_API_KEY` |
 | Xiaomi MiMo | `platform.xiaomimimo.com/api/v1/balance` | `XIAOMI_API_KEY` |
 | GitHub Copilot | `api.github.com/copilot_internal/user` | `GITHUB_TOKEN` |
+| sub2api 中转站 / 多账号 | `{baseUrl}/v1/usage`（余额或 5h/1d/7d 限额） | 该路由 `apiKeyEnv` / `keyRef` |
 | 其他任意供应商 | `customQuota` 配置（URL + JSON 路径映射） | 自定义 `keyRef` |
 
 `customQuota` 示例（余额式）：
@@ -96,6 +97,7 @@ config:
 | `credentials` | `{}` | 按路由覆盖凭据引用，如 `{ "deepseek-official": "MY_DEEPSEEK_KEY" }` |
 | `glm` | `{}` | GLM 组织/项目/套餐类型：`organization` / `project` / `planType` |
 | `customQuota` | `{}` | 通用额度适配器（见上） |
+| `sub2api` | `{}` | 中转站/多账号：`{ "<route>": { "baseUrl": "https://…", "keyRef": "…" } }` |
 
 ## 数据口径
 

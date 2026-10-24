@@ -8,7 +8,7 @@ const home = mkdtempSync(join(tmpdir(), 'dmu-smoke-'))
 process.env.DSH_HOME = home
 
 const { createLedger } = await import('../lib/ledger.js')
-const { adapterFor } = await import('../lib/adapters.js')
+const { adapterFor, parseSub2apiUsage } = await import('../lib/adapters.js')
 
 const assert = (cond, msg) => { if (!cond) { console.error('FAIL:', msg); process.exitCode = 1 } else console.log('ok:', msg) }
 
@@ -55,6 +55,21 @@ assert(adapterFor('openrouter', cfg)?.id === 'openrouter', 'openrouter 适配器
 assert(/^kimi/.test(adapterFor('kimi-coding-cn', cfg)?.id || ''), 'kimi 适配器')
 assert(adapterFor('mycoder', cfg)?.id === 'custom-quota', 'customQuota 适配器')
 assert(adapterFor('unknown-route', cfg) === null, '未知路由返回 null')
+
+// 4) sub2api 解析（余额 / 限额 / 停用 / 未知）
+const s2bal = parseSub2apiUsage({ remaining: 88.5, quota: { used: 11.5, total: 100 }, unit: 'USD' })
+assert(s2bal.kind === 'balance' && s2bal.balance.total === '88.5' && s2bal.balance.used === '11.5' && s2bal.balance.currency === 'USD', 'sub2api 余额模式')
+const s2lim = parseSub2apiUsage({ mode: 'quota_limited', rate_limits: [
+  { window: '5h', limit: 20, used: 6.5, reset_at: '2028-06-01T00:00:00Z' },
+  { window: '1d', limit: 50, used: 12 },
+  { window: '7d', limit: 200, used: 40 },
+] })
+assert(s2lim.kind === 'windows' && s2lim.windows.map((w) => w.key).join(',') === 'rolling,daily,weekly', 'sub2api 限额窗口键')
+assert(Math.abs(s2lim.windows[0].usedPct - 32.5) < 1e-6, 'sub2api 5h 使用百分比')
+assert(s2lim.windows[0].resetAt > 0, 'sub2api 重置时间解析')
+assert(parseSub2apiUsage({ isValid: false }).kind === 'invalid', 'sub2api 停用 Key')
+assert(parseSub2apiUsage({}).kind === 'shape', 'sub2api 未知响应')
+assert(adapterFor('my-sub2api', { sub2api: { 'my-sub2api': { baseUrl: 'https://s.example' } }, credentials: {}, customQuota: {} })?.id === 'sub2api', 'sub2api 适配器分派')
 
 await ledger.flush()
 rmSync(home, { recursive: true, force: true })

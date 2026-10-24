@@ -61,6 +61,30 @@ config:
       balance: { path: data.balance, currency: CNY }
 ```
 
+## sub2api 中转站 / 多账号（1.5.0+）
+
+中转站（sub2api）与「同一官方账号的多个副本」都按 **每个账号一个 provider 路由** 处理：
+
+```yaml
+config:
+  sub2api:
+    my-relay:                       # DSH 里的 provider 路由 id
+      baseUrl: https://sub2api.example
+      keyRef: MY_RELAY_API_KEY      # 可选，默认用该路由的 apiKeyEnv / <ROUTE>_API_KEY
+    deepseek-backup-2:              # 第二个账号（同一中转站或另一个账号）
+      baseUrl: https://sub2api.example
+      keyRef: DEEPSEEK_BACKUP2_API_KEY
+```
+
+- 查询地址：`GET {baseUrl}/v1/usage`，`Authorization: Bearer <该账号 Key>`
+- 两种响应都支持（[sub2api](https://deepwiki.com/Wei-Shaw/sub2api/3.4-billing-and-quotas)）：
+  - 余额模式：`remaining` / `balance` / `available` + `quota.used` + `unit` + `expires_at`
+  - 限额模式：`rate_limits: [{ window: '5h'|'1d'|'7d', limit, used, remaining, reset_at }]` → 展示 5 小时 / 每日 / 每周窗口
+- `baseUrl` 必须是 HTTPS（不合规会显示"配置"错误，不会明文发 Key）
+- 同一个中转站下的多个账号各自独立成卡，互不影响
+
+> 非 sub2api 的中转站或私有余额接口：用 `customQuota`（URL + JSON 路径映射）。
+
 ## 用 customQuota 接入任意供应商
 
 ```yaml

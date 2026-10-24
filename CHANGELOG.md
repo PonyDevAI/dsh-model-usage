@@ -1,5 +1,17 @@
 # Changelog
 
+## 1.5.0 — 2026-10-24
+
+### 新增（issue #1）
+- **sub2api 中转站支持**：`config.sub2api.<route>.baseUrl` → 查询 `GET {baseUrl}/v1/usage`
+  - 余额模式（`remaining`/`balance` + `quota.used` + `unit` + `expires_at`）
+  - 限额模式（`rate_limits` 的 5h / 1d / 7d 三个窗口，含余额与重置时间）
+  - 仅接受 HTTPS baseUrl，Key 只走请求头
+- **同一账号多副本 / 多账号**：每个账号一个 provider 路由，各自配置 baseUrl + Key，独立成卡
+- 新增窗口标签「每日限额」（1d）
+- 余额卡说明行按实际字段展示（仅余额时不再出现空的"充值/赠金"）
+- 解析逻辑抽成纯函数 `parseSub2apiUsage`，纳入冒烟测试（余额/限额/停用/未知 5 组断言）
+
 ## 1.4.0 — 2026-10-24
 
 ### 修复（语言显示不一致：DSH 中文但插件偶发英文）
