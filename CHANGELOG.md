@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.7.3 — 2026-10-24
+
+### 变更（设置 → 总览 两张表）
+- **供应商表**：名称前加供应商 logo（16px），名称用品牌名（`OpenCode Go` / `GLM Coding Plan`），不再裸露 route id
+- **模型表**：去掉供应商文字后缀，改为**模型名前的供应商 logo**；模型名用等宽字体
+- 新增截图：`docs/screenshots/07-overview-providers.png`、`08-overview-models.png`
+
 ## 1.7.2 — 2026-10-24
 
 ### 新增
