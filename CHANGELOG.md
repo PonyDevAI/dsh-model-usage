@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.8.0 — 2026-10-24
+
+### UI 规范化收口（P1 + P2 + P3）
+
+**P1 · 控件回归 Primitive**
+- 侧边栏卡片刷新按钮：自写 `.dmu-rbtn`（22px 迷你按钮）→ 原生 `Button variant='ghost' size='sm'` + 内联 SVG 图标
+- `StatusPill` / `PlanPill`：删除 `fontSize/padding/borderRadius` 覆写，只保留语义色
+- MCP 次数角标 `.dmu-countpill` → 原生 `Pill`
+- 主 tabs 去掉 `.dmu-main-tabs` 的 CSS 覆盖，使用原生 `SegmentedTabs` 尺寸
+
+**P2 · 字号/圆角收敛**
+- 字号 15 档 → **7 档**：9.5（图表轴）/ 11（说明）/ 12（次要）/ 13（小正文）/ 14（正文）/ 16（行标签）/ 20（KPI 与标题）
+- 圆角 6/8/10/14 等混用 → **12（控件卡片）/ 16（弹层）/ 999（胶囊）/ 4（图表柱例外）**
+- 规则写入 `AGENTS.md` §6.1–6.3（禁止覆写 Primitive 度量、字号/圆角允许清单）
+
+**P3 · 更新弹窗行规格**
+- 运行版本/最新版本行改为原生设置行：44px 高、16px 标签、右侧对齐数值、1px 分割线
+
+### 截图
+`docs/screenshots/12-card-final.png`、`13-update-dialog.png`、`14-quota-tab.png`
+
 ## 1.7.6 — 2026-10-24
 
 ### 变更（请求日志表与总览表统一）
