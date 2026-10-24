@@ -20,6 +20,8 @@
 
 ![请求日志](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/04-request-log.png)
 
+![供应商额度表格](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/05-models-quota.png)
+
 ## 安装
 
 要求 DSH `>= 0.2.0-rc.2 < 0.3.0`。
