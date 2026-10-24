@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.7.5 — 2026-10-24
+
+### 变更（总览 · 时间范围切换）
+- 「当天 / 近 7 天 / 近 30 天」由手写 `P.Pill`（描边胶囊）改为**原生 `P.SegmentedTabs`**：
+  - 与 DSH 官方用法一致（`value/onChange/items`，官方在智能体预设引导、插件管理使用）
+  - 自带 `role="tablist"/aria-selected` 无障碍语义（旧实现没有）
+  - 不再手改 Primitive 的 padding/字号，尺寸回归原生度量
+- 同行右侧「供应商筛选 / CSV」按钮统一为 `md`（36px），与范围控件垂直居中
+- 截图：`docs/screenshots/10-range-segmented.png`
+
 ## 1.7.4 — 2026-10-24
 
 ### 变更（总览 · 指标切换按钮）
