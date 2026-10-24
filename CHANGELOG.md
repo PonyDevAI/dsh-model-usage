@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.9.0 — 2026-10-25
+
+### 变更（按反馈调整信息架构）
+- **改名**：设置分区「模型用量」→「用量统计」（zh）；en 同步 `Usage statistics`
+- **头部按钮尺寸**：`md`(36px) → `sm`（与 Tailscale / IM 助理等插件头部按钮观感一致）
+- **分区标题加图表图标**（柱状图 SVG）：DSH 不开放 `settings.section` 导航图标（导航图标按 section id 硬编码，插件 id 回落齿轮），因此图标放在本分区标题处（与 Tailscale 做法一致）
+- **移除「额度」tab**：供应商额度已统一在 设置 → 模型 页底部表格，避免重复入口；tab 只剩「总览 / 请求日志」
+- **模型页额度表去掉「供应商额度」标题**，直接呈现表头
+- 截图：`docs/screenshots/15-header-usage-stats.png`、`16-models-quota-no-heading.png`
+
 ## 1.8.0 — 2026-10-24
 
 ### UI 规范化收口（P1 + P2 + P3）
