@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.4.0 — 2026-10-24
+
+### 修复（语言显示不一致：DSH 中文但插件偶发英文）
+- **语言兜底改为 `document.documentElement.lang` 优先**（DSH 写入的活动语言），不再依赖 `navigator.language`（浏览器界面语言可能与 DSH 不同）
+- 订阅 locale revision：字典晚到/切换语言后，所有插件组件（含框架未注入 `t` 的槽位）强制重渲染，不再残留旧语言
+- 未本地化文案补齐：GitHub Copilot 窗口（Premium 请求 / 对话 / 补全）、错误提示统一中文（凭据无效、接口失败、格式变化、网络失败，原始错误进 tooltip）
+- 供应商名称不再裸露 route id：`opencode-go` → 「OpenCode Go」、`zai-coding-cn` → 「GLM Coding Plan」等 30+ 映射；账号显示「DeepSeek 账号」
+
 ## 1.3.1 — 2026-10-22
 
 ### 变更（更新弹窗对齐 IM 助手）
