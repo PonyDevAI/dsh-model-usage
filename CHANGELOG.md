@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.12.1 — 2026-10-25
+
+### 修复（入口供应商归属 + 位置）
+- **底部入口改为最左**：`conversation.composer.dock` 的 `order` 从 10 → **-20**，排在 CPU/内存/磁盘 等 hud 指标之前（整行最左）
+- **供应商改为「当前所选模型对应的供应商」**：之前取的是"所有供应商里最紧的窗口"（所以显示 GLM 83%），现在按 `snapshot.sessionProvider` 取
+  - 订阅型（有窗口）：显示 `◯ 供应商 剩余%`
+  - 余额型（如 DeepSeek）：显示 `◯ DeepSeek ¥105.70`
+- **hover 卡片同步**：余额型显示「余额 ¥105.70」行；订阅型显示各窗口进度条
+- 截图：`docs/screenshots/26-dock-leftmost.png`、`27-hover-balance.png`
+
 ## 1.12.0 — 2026-10-25
 
 ### 变更（右上角入口按预期重做 + 底部入口归位）
