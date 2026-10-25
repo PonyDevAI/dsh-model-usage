@@ -134,5 +134,5 @@ npm deprecate @ponydev/dsh-model-usage@<ver> "原因，建议升级到 x.y.z"
 - [ ] `npm pack --dry-run` 内容正确（无临时文件/密钥）
 - [ ] `CHANGELOG.md` 已更新
 - [ ] `README.md` 的安装命令/包名正确
-- [ ] 工作量：`docs/screenshots/` 截图与实际 UI 一致（UI 变更时）
+- [ ] 截图：无离线 harness 时不提供截图；恢复时必须 harness + 假数据生成并在 `docs/screenshots/MANIFEST.md` 登记
 - [ ] `package.json` 的 `version` 与将要打的 tag 一致

@@ -12,15 +12,7 @@
 - 版本检查：设置 → 模型用量 右上角「检查更新」（对比 npm 最新版，可复制更新命令）
 - 只用**真实数据**：额度来自服务商接口，用量来自本机会话日志（逐 token 一致），不做金额估算
 
-![侧边栏额度卡片](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/01-sidebar.png)
-
-![模型用量弹窗](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/02-modal.png)
-
-![统计面板](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/03-settings.png)
-
-![请求日志](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/04-request-log.png)
-
-![供应商额度表格](https://raw.githubusercontent.com/PonyDevAI/dsh-model-usage/main/docs/screenshots/05-models-quota.png)
+> **截图**：当前不提供。此前的截图含真实模型名、余额与 token 用量，已在 2026-10 隐私清理时全部移除；恢复时必须由离线 harness + 假数据生成并登记，见 [`docs/screenshots/MANIFEST.md`](docs/screenshots/MANIFEST.md)。
 
 ## 安装
 

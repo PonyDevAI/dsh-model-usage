@@ -627,7 +627,7 @@ window.__ModuleLoader__.load({
 dsh --profile web --dump-config | grep -A6 "llm-pi-ai"
 
 # 安装本地插件（宿主需重启；client 改动硬刷新）
-dsh plugin --profile web add link:/Users/pony/deepseek/plugins/dsh-model-usage
+dsh plugin --profile web add link:~/deepseek/plugins/dsh-model-usage
 
 # 卸载
 dsh plugin --profile web remove dsh-model-usage
@@ -651,7 +651,7 @@ dsh plugin --profile web remove dsh-model-usage
 
 ## 13. 展示设计 v2 —— 按额度类型分化的卡片体系
 
-> mockup：`docs/mockups/11-archetypes-light.png`（四种原型）、`12-modal-v2-light.png`（详情弹窗）、`13-archetypes-dark.png`（暗色）；源文件 `gen3.mjs`。
+> 效果图已随 2026-10 隐私清理移除（原图含真实模型名与用量）；需要时先用假数据重新生成并在 `docs/screenshots/MANIFEST.md` 登记。
 > 参考：Claude Code `/usage` 的窗口条 + 重置倒计时、CodexBar 的紧凑百分比、Vercel/Linear 的大数字卡片层级、Raycast 的仪表隐喻。
 
 ### 13.1 核心抽象：额度四原型

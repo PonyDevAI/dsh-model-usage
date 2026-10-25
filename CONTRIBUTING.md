@@ -27,7 +27,7 @@ open test-render.html
 ## 提交前检查
 
 ```bash
-for f in lib/*.js; do node --check "$f"; done
+npm run check          # 语法 + i18n + 隐私 / 截图来源门禁
 node scripts/smoke.mjs
 npm pack --dry-run
 ```
@@ -45,6 +45,7 @@ npm pack --dry-run
 - Conventional Commits：`feat:` `fix:` `docs:` `ci:` `chore:` `refactor:`
 - 一个提交一件事
 - 不要提交 `node_modules/`、`*.tgz`、密钥、临时脚本
+- **截图只能由离线 harness（`scripts/render-test.mjs`）+ 假数据生成**，不得用真实账户截图；凭据 / 余额 / 真实用量不得入库；新增截图必须在 `docs/screenshots/MANIFEST.md` 登记（`check-shots` 强制）
 
 ## 发布
 

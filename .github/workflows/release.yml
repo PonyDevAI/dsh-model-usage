@@ -18,6 +18,11 @@ jobs:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
 
+      - name: Privacy + screenshot source gates
+        run: |
+          node scripts/check-privacy.mjs
+          node scripts/check-shots.mjs
+
       - name: Verify tag matches package version
         run: |
           TAG="${GITHUB_REF_NAME#v}"

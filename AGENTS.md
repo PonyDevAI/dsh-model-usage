@@ -15,8 +15,10 @@ lib/ledger.js     请求账本（会话日志聚合、观测、历史回填、�
 lib/client.js     浏览器端 bundle（slots、组件、样式、i18n）
 cordis.patch.yml  bundle 补丁（插入 model-usage 行、默认配置）
 assets/logos/     供应商 logo（SVG）
-scripts/smoke.mjs 冒烟测试（不触网）
-docs/             架构文档、截图
+scripts/smoke.mjs            冒烟测试（不触网）
+scripts/check-privacy.mjs    隐私门禁（本机绝对路径 / 私有主机名 / 凭据）
+scripts/check-shots.mjs      截图来源门禁（必须 harness 生成 + MANIFEST 登记）
+docs/             架构文档；docs/screenshots（MANIFEST 登记，当前无截图）
 ```
 
 **约束**：Host 与 Client 不能互相 import；Client 不得直接读文件/环境变量；所有跨端数据走 RPC（`POST /model-usage/<endpoint>`）。
@@ -30,12 +32,14 @@ docs/             架构文档、截图
 ## 3. 提交前必须通过
 
 ```bash
-for f in lib/*.js; do node --check "$f"; done   # 语法
+npm run check                                   # 语法 + i18n + 隐私/截图来源门禁
 node scripts/smoke.mjs                          # 冒烟（16 项断言）
 npm pack --dry-run                              # 发布内容检查
 ```
 
-CI 会重复执行以上检查；失败不合并。
+其中 `npm run check` 含两道门禁：`scripts/check-privacy.mjs`（本机路径 / 私有主机名 / 凭据）与 `scripts/check-shots.mjs`（`docs/screenshots` / `docs/mockups` 下每张图必须在 `docs/screenshots/MANIFEST.md` 登记且来源为 `scripts/*.mjs`）。
+
+CI 会重复执行以上检查（另跑 privacy 门禁）；失败不合并。
 
 ## 4. 代码规范
 
@@ -93,6 +97,8 @@ CI 会重复执行以上检查；失败不合并。
 - Conventional Commits：`feat:` / `fix:` / `docs:` / `ci:` / `chore:` / `refactor:`
 - 一个提交只做一件事；提交信息中文或英文均可，但需说明"为什么"
 - 不要提交：`node_modules/`、`*.tgz`、临时脚本、密钥、截图调试残留
+- **截图必须由离线 harness + 假数据生成**：不得用真实账户 / 真机截图；凭据、余额、真实用量不得入库
+- 新增或恢复截图时，必须在 `docs/screenshots/MANIFEST.md` 登记「文件 ← 生成脚本」，否则 `check-shots` 失败
 - 作者身份使用全局 git config（`Pony <205503242+jmaubay7@users.noreply.github.com>`），不要用 `-c user.email=` 覆盖，不要写 AI 署名
 
 ## 9. 不要做的事
