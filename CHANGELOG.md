@@ -1,5 +1,20 @@
 # Changelog
 
+## 1.10.0 — 2026-10-25
+
+### 新增（显示区域可配置）
+- **设置 → 模型 → 额度表格底部新增「显示设置」**（原生 `Switch` 行，44px）：
+  - 侧边栏底部卡片（默认开）——「更多」上方那张额度卡
+  - 右上角统计图标（默认关）——会话头部 `conversation.session.header.utilities` 槽位的圆形徽标
+- **会话头部圆形统计图标**：环形进度 = 当前供应商最紧窗口剩余，环内供应商 logo；点击打开完整弹窗
+- 偏好写入 `localStorage['dmu:display']`，即时生效；默认值来自插件 config
+- 新增 config 键：`footer`（默认 `true`）、`headerIcon`（默认 `false`）
+- 截图：`docs/screenshots/17-header-icon.png`、`18-display-toggles.png`
+
+### 修复
+- SVG 描边改用 CSS `style`（`stroke="var(--dsw-…)"` 属描述属性，`var()` 无效会导致圆环发灰/显示错误颜色）
+- 余额型供应商（无窗口）不再画空环
+
 ## 1.9.0 — 2026-10-25
 
 ### 变更（按反馈调整信息架构）
