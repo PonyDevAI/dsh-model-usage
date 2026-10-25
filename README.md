@@ -102,6 +102,7 @@ config:
 | `sub2api` | `{}` | 中转站/多账号：`{ "<route>": { "baseUrl": "https://…", "keyRef": "…" } }` |
 | `footer` | `true` | 侧边栏底部额度卡片是否显示（也可在设置 → 模型 → 显示设置里切换） |
 | `headerIcon` | `false` | 会话头部右上角圆形统计图标是否显示 |
+| `bottomBar` | `false` | 输入框底部状态栏额度入口是否显示 |
 
 ## 数据口径
 
