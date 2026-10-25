@@ -1,6 +1,6 @@
 {
   "name": "@ponydev/dsh-model-usage",
-  "version": "1.12.2",
+  "version": "1.12.3",
   "description": "DSH Web 插件：实时显示模型供应商额度与用量（DeepSeek / GLM Coding Plan / OpenRouter / Kimi Coding Plan + 自定义适配器）",
   "keywords": [
     "dsh",
